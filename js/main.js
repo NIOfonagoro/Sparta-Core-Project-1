@@ -13,6 +13,9 @@ $(document).ready(function(){
   var directionX = '+';
   var directionY = '+';
 
+  var ballObject = {};
+  var player1Object = {};
+
   $('.btn').click(function(){
 
     if (timerRunning) {
@@ -21,19 +24,23 @@ $(document).ready(function(){
     } else {
       interval = setInterval(function(){
 
-        var player1Left = $player1.offset().left;
-        var player1Top = $player1.offset().top;
-        var player1Right = player1Left + $player1.width();
-        var player1Bottom = player1Top + $player1.height();
         // Check ball position
-        var ballLeft = $ball.offset().left;
-        var ballTop = $ball.offset().top;
+        var ballLeft = $ball.position().left;
+        var ballTop = $ball.position().top;
         var ballRight = ballLeft + $ball.width();
         var ballBottom = ballTop + $ball.height();
 
+        //Assign ball positions to an object for collision analysis
+        ballObject.left = ballLeft;
+        ballObject.top = ballTop;
+        ballObject.bottom = ballBottom;
+        ballObject.right = ballRight;
+
+        console.log(ballObject);
+
         // Check container position
-        var containerLeft = $container.offset().left;
-        var containerTop = $container.offset().top;
+        var containerLeft = $container.position().left;
+        var containerTop = $container.position().top;
         var containerRight = containerLeft + $container.width();
         var containerBottom = containerTop + $container.height();
 
@@ -82,19 +89,19 @@ $(document).ready(function(){
         }
 
 
-        if (player1Right > containerRight || player1Left < containerLeft || player1Top < containerTop || player1Bottom > containerBottom){
-          console.log('no');
-        }
-        else {
-          movePlane();
-        }
+
+        movePlayer();
+
 
       },1);
       timerRunning = !timerRunning;
     }
   });
 
-  setInterval(movePlane, 200);
+  // If p1.top < pitch.top && p1.right < pitch.right && p1.left > pitch.left && p1.bottom > pitch.bottom
+  // set interval movePlayer
+
+  setInterval(movePlayer, 200);
   var keys = {}
 
   $(document).keydown(function(e) {
@@ -105,29 +112,55 @@ $(document).ready(function(){
     delete keys[e.keyCode];
   });
 
-  function movePlane() {
+  function movePlayer() {
+
+    //Check player position & assign to object
+    var player1Left = $player1.offset().left;
+    var player1Top = $player1.offset().top;
+    var player1Right = player1Left + $player1.width();
+    var player1Bottom = player1Top + $player1.height();
+
+    player1Object.left = player1Left;
+    player1Object.top = player1Top;
+    player1Object.bottom = player1Bottom;
+    player1Object.right = player1Right;
+
+    // Check container position
+    var containerLeft = $container.offset().left;
+    var containerTop = $container.offset().top;
+    var containerRight = containerLeft + $container.width();
+    var containerBottom = containerTop + $container.height();
+
+    //Only move the player if it satisfies the container conditions
     for (var direction in keys) {
       switch (true) {
         case !keys.hasOwnProperty(direction):
-          break;
+        break;
         case direction == 37:
-            $player1.css('left', `${posX1}px`); //arrow left
-            posX1--;
-          break;
+        if (player1Object.left > containerLeft) {
+          $player1.css('left', `${posX1}px`); //arrow left
+          posX1--;
+        }
+        break;
         case direction == 38:
+        if (player1Object.top > containerTop) {
           $player1.css('top', `${posY1}px`); //arrow up
           posY1--;
-          break;
+        }
+        break;
         case direction == 39:
+        if (player1Object.right < containerRight) {
           $player1.css('left', `${posX1}px`); //arrow right
           posX1++;
-          break;
+        }
+        break;
         case direction == 40:
+        if (player1Object.bottom < containerBottom) {
           $player1.css('top',`${posY1}px`); //arrow down
           posY1++;
-          break;
+        }
+        break;
         default:
-        // console.log('nada');
       }
     }
   }

@@ -11,6 +11,8 @@ $(document).ready(function(){
   var directionY = "+";
   //pitch
 
+  console.log(event);
+
   $(".btn").click(function(){
 
     if (timerRunning){
@@ -25,12 +27,14 @@ $(document).ready(function(){
         var player1Right = player1Left + $player1.width();
         var player1Bottom = player1Top + $player1.height();
 
-        console.log(`${player1Right} ${player1Top}`);
+        // console.log(`${player1Right} ${player1Top}`);
         // Check container Position
         var pitchLeft = $pitch.offset().left;
         var pitchTop = $pitch.offset().top;
         var pitchRight = pitchLeft + $pitch.width();
-        var pitchbottom = pitchTop + $pitch.height();
+        var pitchBottom = pitchTop + $pitch.height();
+
+        console.log(`${pitchLeft} and ${player1Left} `);
 
         setInterval(movePlane, 200);
         var keys = {}
@@ -43,22 +47,22 @@ $(document).ready(function(){
           delete keys[e.keyCode];
         });
 
+
         function movePlane() {
           for (var direction in keys) {
             if (!keys.hasOwnProperty(direction)) continue;
-            if (player1Top <= pitchTop) {$player1.animate({top: "0"}, 0); };
-            if (direction == 37) {
+            if (direction == 37 && player1Left > pitchLeft) {
               $player1.animate({left: "-=5"}, 0);
-            }
-            if (direction == 38) {
+            } //arrow left
+            if (direction == 38 && player1Top > pitchTop) {
               $player1.animate({top: "-=5"}, 0);
-            }
-            if (direction == 39) {
+            } //arrow up
+            if (direction == 39 && player1Right < pitchRight) {
               $player1.animate({left: "+=5"}, 0);
-            }
-            if (direction == 40) {
+            } //arrow right
+            if (direction == 40 && player1Bottom < pitchBottom) {
               $player1.animate({top: "+=5"}, 0);
-            }
+            } //arrow down
           }
         }
       }, 500);

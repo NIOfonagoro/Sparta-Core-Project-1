@@ -82,11 +82,11 @@ $(document).ready(function(){
         }
 
 
-        if (player1Right < containerRight && player1Left > containerLeft && player1Top > containerTop && player1Bottom < containerBottom) {
-          movePlane();
+        if (player1Right > containerRight || player1Left < containerLeft || player1Top < containerTop || player1Bottom > containerBottom){
+          console.log('no');
         }
         else {
-          posX 
+          movePlane();
         }
 
       },1);

@@ -3,92 +3,134 @@ $(document).ready(function(){
   var $player1 = $(".player1");
   var interval;
   var timerRunning = false;
-  var $pitch = $(".pitch")
-  var $ball = $(".ball");
-  var pos = 0;
+  var $container = $('.container');
+  var $ball = $('.ball');
+  var posX = 0;
+  var posY = 0;
+  var posX1 = 0;
+  var posY1 = 0;
 
-  var directionX = "+";
-  var directionY = "+";
-  //pitch
+  var directionX = '+';
+  var directionY = '+';
 
-  console.log(event);
+  $('.btn').click(function(){
 
-  $(".btn").click(function(){
-
-    if (timerRunning){
+    if (timerRunning) {
       clearInterval(interval);
-      timerRunning = !timerRunning
+      timerRunning = !timerRunning;
     } else {
-      //players - physical
       interval = setInterval(function(){
-        //check ball Position
+
         var player1Left = $player1.offset().left;
         var player1Top = $player1.offset().top;
         var player1Right = player1Left + $player1.width();
         var player1Bottom = player1Top + $player1.height();
+        // Check ball position
+        var ballLeft = $ball.offset().left;
+        var ballTop = $ball.offset().top;
+        var ballRight = ballLeft + $ball.width();
+        var ballBottom = ballTop + $ball.height();
 
-        // console.log(`${player1Right} ${player1Top}`);
-        // Check container Position
-        var pitchLeft = $pitch.offset().left;
-        var pitchTop = $pitch.offset().top;
-        var pitchRight = pitchLeft + $pitch.width();
-        var pitchBottom = pitchTop + $pitch.height();
+        // Check container position
+        var containerLeft = $container.offset().left;
+        var containerTop = $container.offset().top;
+        var containerRight = containerLeft + $container.width();
+        var containerBottom = containerTop + $container.height();
 
-        console.log(`${pitchLeft} and ${player1Left} `);
-
-        setInterval(movePlane, 200);
-        var keys = {}
-
-        $(document).keydown(function(e) {
-          keys[e.keyCode] = true;
-        });
-
-        $(document).keyup(function(e) {
-          delete keys[e.keyCode];
-        });
-
-
-        function movePlane() {
-          for (var direction in keys) {
-            if (!keys.hasOwnProperty(direction)) continue;
-            if (direction == 37 && player1Left > pitchLeft) {
-              $player1.animate({left: "-=5"}, 0);
-            } //arrow left
-            if (direction == 38 && player1Top > pitchTop) {
-              $player1.animate({top: "-=5"}, 0);
-            } //arrow up
-            if (direction == 39 && player1Right < pitchRight) {
-              $player1.animate({left: "+=5"}, 0);
-            } //arrow right
-            if (direction == 40 && player1Bottom < pitchBottom) {
-              $player1.animate({top: "+=5"}, 0);
-            } //arrow down
-          }
+        // Move ball along X-Axis
+        if (directionX === '+') {
+          $ball.css({
+            'left': `${posX}px`
+          });
+          posX++;
         }
-      }, 500);
-      timerRunning = !timerRunning;
+        if (directionX === '-') {
+          $ball.css({
+            'left': `${posX}px`
+          });
+          posX--;
+        }
+        // Move ball along Y-Axis
+        if (directionY === '+') {
+          $ball.css({
+            'top': `${posY}px`
+          });
+          posY++;
+        }
+        if (directionY === '-') {
+          $ball.css({
+            'top': `${posY}px`
+          });
+          posY--;
+        }
 
+        // When ballRight > containerRight
+        if (ballRight > containerRight) {
+          directionX = '-';
+        }
+        // When ballLeft < containerLeft
+        if (ballLeft < containerLeft) {
+          directionX = '+';
+        }
+        // When ballBottom > containerBottom
+        if (ballBottom > containerBottom) {
+          directionY = '-';
+        }
+        // When ballLeft < containerLeft
+        if (ballTop < containerTop) {
+          directionY = '+';
+        }
+
+
+        if (player1Right < containerRight && player1Left > containerLeft && player1Top > containerTop && player1Bottom < containerBottom) {
+          movePlane();
+        }
+        else {
+          posX 
+        }
+
+      },1);
+      timerRunning = !timerRunning;
     }
   });
-    //ball
 
-  //Timer
+  setInterval(movePlane, 200);
+  var keys = {}
 
-  //players - identity and scorecard
+  $(document).keydown(function(e) {
+    keys[e.keyCode] = true;
+  });
 
-  //scoreboard
+  $(document).keyup(function(e) {
+    delete keys[e.keyCode];
+  });
 
-  //reset after goal
-
-
-  //OOP
-
-  // window.addEventListener('keydown', function(event){
-  // console.log(event); //look for keyCode. keydown vs keypress will be quite useful to understand
-  // })
-
-
-
+  function movePlane() {
+    for (var direction in keys) {
+      switch (true) {
+        case !keys.hasOwnProperty(direction):
+          break;
+        case direction == 37:
+            $player1.css('left', `${posX1}px`); //arrow left
+            posX1--;
+          break;
+        case direction == 38:
+          $player1.css('top', `${posY1}px`); //arrow up
+          posY1--;
+          break;
+        case direction == 39:
+          $player1.css('left', `${posX1}px`); //arrow right
+          posX1++;
+          break;
+        case direction == 40:
+          $player1.css('top',`${posY1}px`); //arrow down
+          posY1++;
+          break;
+        default:
+        // console.log('nada');
+      }
+    }
+  }
 
 
 

@@ -1,18 +1,89 @@
 $(document).ready(function(){
 
-//pitch
+  var $player1 = $(".player1");
+  var interval;
+  var timerRunning = false;
+  var $pitch = $(".pitch")
+  var $ball = $(".ball");
+  var pos = 0;
 
-//players - physical
+  var directionX = "+";
+  var directionY = "+";
+  //pitch
 
-//ball
+  $(".btn").click(function(){
 
-//Timer
+    if (timerRunning){
+      clearInterval(interval);
+      timerRunning = !timerRunning
+    } else {
+      //players - physical
+      interval = setInterval(function(){
+        //check ball Position
+        var player1Left = $player1.offset().left;
+        var player1Top = $player1.offset().top;
+        var player1Right = player1Left + $player1.width();
+        var player1Bottom = player1Top + $player1.height();
 
-//players - identity and scorecard
+        console.log(`${player1Right} ${player1Top}`);
+        // Check container Position
+        var pitchLeft = $pitch.offset().left;
+        var pitchTop = $pitch.offset().top;
+        var pitchRight = pitchLeft + $pitch.width();
+        var pitchbottom = pitchTop + $pitch.height();
 
-//scoreboard
+        setInterval(movePlane, 200);
+        var keys = {}
 
-//reset after goal
+        $(document).keydown(function(e) {
+          keys[e.keyCode] = true;
+        });
+
+        $(document).keyup(function(e) {
+          delete keys[e.keyCode];
+        });
+
+        function movePlane() {
+          for (var direction in keys) {
+            if (!keys.hasOwnProperty(direction)) continue;
+            if (player1Top <= pitchTop) {$player1.animate({top: "0"}, 0); };
+            if (direction == 37) {
+              $player1.animate({left: "-=5"}, 0);
+            }
+            if (direction == 38) {
+              $player1.animate({top: "-=5"}, 0);
+            }
+            if (direction == 39) {
+              $player1.animate({left: "+=5"}, 0);
+            }
+            if (direction == 40) {
+              $player1.animate({top: "+=5"}, 0);
+            }
+          }
+        }
+      }, 500);
+      timerRunning = !timerRunning;
+
+    }
+  });
+    //ball
+
+  //Timer
+
+  //players - identity and scorecard
+
+  //scoreboard
+
+  //reset after goal
+
+
+  //OOP
+
+  // window.addEventListener('keydown', function(event){
+  // console.log(event); //look for keyCode. keydown vs keypress will be quite useful to understand
+  // })
+
+
 
 
 

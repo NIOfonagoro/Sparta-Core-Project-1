@@ -1,25 +1,36 @@
-.pitch{
-  height: 600px;
-  width: 1200px;
-  background-color: rgb(114, 161, 122);
-  border: 3px solid black;
+body {
+  font-family: fantasy;
+  text-align: center;
+  margin: 100px auto
+}
+
+.container {
+  width: 1000px;
+  height: 400px;
+  margin: 10% auto;
+  background: #385831;
+  border-radius: 1em;
   position: relative;
-  margin: 50px auto;
 }
 
 .ball {
-  height: 20px;
-  width: 20px;
-  background: rgb(255, 255, 255);
+  height:30px;
+  width:30px;
+  background: lime;
   border-radius: 50%;
   position: absolute;
 }
+
 .player1 {
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  width: 40px;
   background: rgb(55, 42, 42);
   border-radius: 10%;
   position: absolute;
+}
+
+.btn-container {
+  text-align: center;
 }
 
 .btn {

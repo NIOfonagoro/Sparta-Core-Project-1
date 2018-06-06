@@ -5,8 +5,8 @@ body {
 }
 
 .container {
-  width: 1000px;
-  height: 400px;
+  width: 1200px;
+  height: 650px;
   margin: 10% auto;
   background: #385831;
   border-radius: 1em;
@@ -22,7 +22,7 @@ body {
 }
 
 .player1 {
-  height: 40px;
+  height: 70px;
   width: 40px;
   background: rgb(55, 42, 42);
   border-radius: 10%;

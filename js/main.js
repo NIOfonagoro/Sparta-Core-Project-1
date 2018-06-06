@@ -24,23 +24,35 @@ $(document).ready(function(){
     } else {
       interval = setInterval(function(){
 
+        //Check player position & assign to object
+        var player1Left = $player1.offset().left;
+        var player1Top = $player1.offset().top;
+        var player1Right = player1Left + $player1.width();
+        var player1Bottom = player1Top + $player1.height();
+
+
+        player1Object.left = Math.ceil('player1Left');
+        player1Object.top = Math.ceil('player1Top');
+        player1Object.bottom = Math.ceil('player1Bottom');
+        player1Object.right = Math.ceil('player1Right');
+
         // Check ball position
-        var ballLeft = $ball.position().left;
-        var ballTop = $ball.position().top;
+        var ballLeft = $ball.offset().left;
+        var ballTop = $ball.offset().top;
         var ballRight = ballLeft + $ball.width();
         var ballBottom = ballTop + $ball.height();
 
         //Assign ball positions to an object for collision analysis
-        ballObject.left = ballLeft;
-        ballObject.top = ballTop;
-        ballObject.bottom = ballBottom;
-        ballObject.right = ballRight;
+        ballObject.left = Math.ceil(ballLeft);
+        ballObject.top = Math.ceil(ballTop);
+        ballObject.bottom = Math.ceil(ballBottom);
+        ballObject.right = Math.ceil(ballRight);
 
-        console.log(ballObject);
+        // console.log(ballObject);
 
         // Check container position
-        var containerLeft = $container.position().left;
-        var containerTop = $container.position().top;
+        var containerLeft = $container.offset().left;
+        var containerTop = $container.offset().top;
         var containerRight = containerLeft + $container.width();
         var containerBottom = containerTop + $container.height();
 
@@ -92,6 +104,19 @@ $(document).ready(function(){
 
         movePlayer();
 
+        if (player1Object.right === ballObject.left && ballObject.top < player1Object.bottom && ballObject.bottom > player1Object.top) {
+          directionX = "+";
+        }
+        if (player1Object.left === ballObject.right && ballObject.top < player1Object.bottom && ballObject.bottom > player1Object.top) {
+          directionX = "-";
+        }
+        if (player1Object.top === ballObject.bottom && ballObject.right > player1Object.left && ballObject.left < player1Object.right) {
+          directionY = "-";
+        }
+
+        if (player1Object.bottom === ballObject.top && ballObject.right < player1Object.left && ballObject.left > player1Object.right) {
+          directionY = "+";
+        }
 
       },1);
       timerRunning = !timerRunning;
@@ -105,6 +130,7 @@ $(document).ready(function(){
   var keys = {}
 
   $(document).keydown(function(e) {
+    event.preventDefault();
     keys[e.keyCode] = true;
   });
 

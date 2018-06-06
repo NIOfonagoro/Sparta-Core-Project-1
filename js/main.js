@@ -217,20 +217,20 @@ $(document).ready(function(){
 
   function AddScore(){
 
-      score1++;
-      console.log(score1);
-      $player1Score.text(score1);
+    score1++;
+    console.log(score1);
+    $player1Score.text(score1);
 
     if (score1 > 1) {
       endGame1();
     }
   }
-function endGame1() {
-  clearInterval(interval);
-  clearInterval(movePlayer);
-  $ball.hide();
-  $player1Win.show();
-}
+  function endGame1() {
+    clearInterval(interval);
+    clearInterval(movePlayer);
+    $ball.hide();
+    $player1Win.show();
+  }
 
 
 });

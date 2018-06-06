@@ -55,9 +55,9 @@ body {
   flex-direction: row;
   box-sizing: border-box;
   background-color: rgb(85, 29, 70);
-  width: 650px;
-  height: 300px;
-  margin: -30px auto;
+  width: 550px;
+  height: 250px;
+  margin: -150px auto;
 }
 .score1{
   width: 50%;
@@ -66,7 +66,7 @@ body {
   width: 50%;
 }
 .player1Score {
-  font-size: 10em;
+  font-size: 8em;
 }
 
 .btn-container {

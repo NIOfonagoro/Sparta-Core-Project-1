@@ -5,16 +5,35 @@ $(document).ready(function(){
   var timerRunning = false;
   var $container = $('.container');
   var $ball = $('.ball');
-  var posX = 0;
-  var posY = 0;
-  var posX1 = 0;
-  var posY1 = 0;
+  var $goal1 = $('goal1');
+  var $goal2 = $('.goal2');
+  var $player1Score = $('.player1Score')
+  var $player1Win = $('.player1Win')
+  $player1Win.hide();
+  let posX = 600;
+  let posY = 325;
+  let posX1 = 30;
+  let posY1 = 325;
+  var score1 = 0;
 
   var directionX = '+';
   var directionY = '+';
 
   var ballObject = {};
   var player1Object = {};
+
+
+  // Check container position
+  var containerLeft = $container.offset().left;
+  var containerTop = $container.offset().top;
+  var containerRight = containerLeft + $container.width();
+  var containerBottom = containerTop + $container.height();
+
+  var goal2Line = $goal2.offset().left;
+  var goalTop = $goal2.offset().top;
+  // var goal1Line = $goal1.offset().left + $goal.width();
+  var goalBottom = goalTop + $goal2.height();
+
 
   $('.btn').click(function(){
 
@@ -49,12 +68,6 @@ $(document).ready(function(){
         ballObject.right = Math.ceil(ballRight);
 
         // console.log(ballObject);
-
-        // Check container position
-        var containerLeft = $container.offset().left;
-        var containerTop = $container.offset().top;
-        var containerRight = containerLeft + $container.width();
-        var containerBottom = containerTop + $container.height();
 
         // Move ball along X-Axis
         if (directionX === '+') {
@@ -104,6 +117,7 @@ $(document).ready(function(){
 
         movePlayer();
 
+        // player ball collisions
         if (player1Object.right === ballObject.left && ballObject.top < player1Object.bottom && ballObject.bottom > player1Object.top) {
           directionX = "+";
         }
@@ -114,9 +128,25 @@ $(document).ready(function(){
           directionY = "-";
         }
 
-        if (player1Object.bottom === ballObject.top && ballObject.right < player1Object.left && ballObject.left > player1Object.right) {
+        if (player1Object.bottom === ballObject.top && ballObject.right > player1Object.left && ballObject.left < player1Object.right) {
           directionY = "+";
         }
+
+        // ball goal collisions
+
+        if(goal2Line === ballRight && ballTop > goalTop && ballBottom < goalBottom) {
+          console.log("issa goal");
+          posX = 600;
+          posY = 325;
+          posX1 = 30;
+          posY1 = 325;
+          clearInterval(movePlayer);
+          posX1--;
+          posY1--;
+          AddScore();
+
+        }
+
 
       },1);
       timerRunning = !timerRunning;
@@ -150,12 +180,6 @@ $(document).ready(function(){
     player1Object.top = player1Top;
     player1Object.bottom = player1Bottom;
     player1Object.right = player1Right;
-
-    // Check container position
-    var containerLeft = $container.offset().left;
-    var containerTop = $container.offset().top;
-    var containerRight = containerLeft + $container.width();
-    var containerBottom = containerTop + $container.height();
 
     //Only move the player if it satisfies the container conditions
     for (var direction in keys) {
@@ -191,6 +215,22 @@ $(document).ready(function(){
     }
   }
 
+  function AddScore(){
+
+      score1++;
+      console.log(score1);
+      $player1Score.text(score1);
+
+    if (score1 > 1) {
+      endGame1();
+    }
+  }
+function endGame1() {
+  clearInterval(interval);
+  clearInterval(movePlayer);
+  $ball.hide();
+  $player1Win.show();
+}
 
 
 });

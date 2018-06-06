@@ -1,13 +1,17 @@
 body {
   font-family: fantasy;
   text-align: center;
-  margin: 100px auto
+  margin: auto;
+}
+.instructions{
+width: 750px;
+padding: 0 30px;
 }
 
 .container {
   width: 1200px;
   height: 650px;
-  margin: 10% auto;
+  margin: 20px auto;
   background: #385831;
   border-radius: 1em;
   position: relative;
@@ -20,6 +24,7 @@ body {
   height: 200px;
   left: -1.7%;
   top: 36%;
+
 }
 .goal2{
   background-color: black;
@@ -35,9 +40,9 @@ body {
   width:30px;
   background: lime;
   border-radius: 50%;
-  position: absolute;
   left: 50%;
   top: 50%;
+  position: absolute;
 }
 
 .player1 {
@@ -45,8 +50,8 @@ body {
   width: 40px;
   background: rgb(55, 42, 42);
   border-radius: 10%;
-  position: absolute;
   top: 325px;
+  position: absolute;
   left: 30px;
 }
 
@@ -57,7 +62,7 @@ body {
   background-color: rgb(85, 29, 70);
   width: 550px;
   height: 250px;
-  margin: -150px auto;
+  margin: auto;
 }
 .score1{
   width: 50%;
@@ -71,17 +76,20 @@ body {
 
 .btn-container {
   text-align: center;
+  display: inline-flex;
 }
 
 .btn {
   font-size: 1.5em;
-  padding:.5em 1.5em;
+  padding: auto;
   background: none;
   border-radius: 1.5em;
   border: 2px solid #999;
   color:#999;
   transition: .2s;
   outline: none;
+  margin: auto 90px;
+  width:200px;
 }
 .btn:hover {
   background: #999;

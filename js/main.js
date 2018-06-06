@@ -1,15 +1,16 @@
 $(document).ready(function(){
-
+  var gameDone = false;
   var $player1 = $(".player1");
   var interval;
   var timerRunning = false;
   var $container = $('.container');
-  var $ball = $('.ball');
+  let $ball = $('.ball');
   var $goal1 = $('goal1');
   var $goal2 = $('.goal2');
   var $player1Score = $('.player1Score')
   var $player1Win = $('.player1Win')
   $player1Win.hide();
+
   let posX = 600;
   let posY = 325;
   let posX1 = 30;
@@ -21,6 +22,7 @@ $(document).ready(function(){
 
   var ballObject = {};
   var player1Object = {};
+
 
 
   // Check container position
@@ -40,9 +42,13 @@ $(document).ready(function(){
     if (timerRunning) {
       clearInterval(interval);
       timerRunning = !timerRunning;
-    } else {
+    }
+    else if (gameDone === true) {
+      location.reload();
+    }
+    else {
+      timer();
       interval = setInterval(function(){
-
         //Check player position & assign to object
         var player1Left = $player1.offset().left;
         var player1Top = $player1.offset().top;
@@ -144,9 +150,7 @@ $(document).ready(function(){
           posX1--;
           posY1--;
           AddScore();
-
         }
-
 
       },1);
       timerRunning = !timerRunning;
@@ -216,21 +220,43 @@ $(document).ready(function(){
   }
 
   function AddScore(){
-
     score1++;
-    console.log(score1);
     $player1Score.text(score1);
 
     if (score1 > 1) {
       endGame1();
     }
   }
+
   function endGame1() {
-    clearInterval(interval);
-    clearInterval(movePlayer);
+    // clearInterval(interval);
+    // clearInterval(movePlayer);
     $ball.hide();
     $player1Win.show();
+    gameDone = true;
   }
 
+  var time = 15,
+  elapsed;
+
+  function timer(){
+    var x = window.setInterval(function()
+    {
+      if (timerRunning === true) {
+        time -= 1;
+
+        elapsed = Math.floor(time);
+
+        $('.time').text(`Time Left: ${elapsed} seconds`);
+
+      }
+
+      if (time === 0) {
+        endGame1();
+        clearInterval(x);
+      }
+
+    }, 1000);
+  }
 
 });

@@ -13,12 +13,31 @@ body {
   position: relative;
 }
 
+.goal1{
+  background-color: black;
+  position: absolute;
+  width: 20px;
+  height: 200px;
+  left: -1.7%;
+  top: 36%;
+}
+.goal2{
+  background-color: black;
+  position: absolute;
+  width: 20px;
+  height: 200px;
+  left: 100%;
+  top: 36%;
+}
+
 .ball {
   height:30px;
   width:30px;
   background: lime;
   border-radius: 50%;
   position: absolute;
+  left: 50%;
+  top: 50%;
 }
 
 .player1 {
@@ -27,6 +46,27 @@ body {
   background: rgb(55, 42, 42);
   border-radius: 10%;
   position: absolute;
+  top: 325px;
+  left: 30px;
+}
+
+.scoreboard{
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  background-color: rgb(85, 29, 70);
+  width: 650px;
+  height: 300px;
+  margin: -30px auto;
+}
+.score1{
+  width: 50%;
+}
+.score2{
+  width: 50%;
+}
+.player1Score {
+  font-size: 10em;
 }
 
 .btn-container {
@@ -52,4 +92,13 @@ body {
   background: #666;
   color: white;
   border: 2px solid #666;
+}
+
+.player1Win{
+  width: 90%;
+  height: 90%;
+  background-color: black;
+  margin: auto;
+  color: white;
+  font-size: 10em;
 }

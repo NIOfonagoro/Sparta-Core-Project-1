@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
   <!-- <link rel="stylesheet" href="CSS/bootstrap-3.3.7-dist/css/bootstrap.css"> -->
   <link rel="stylesheet" href="CSS/style.css">
@@ -14,31 +15,43 @@
   <title>Document</title>
 </head>
 <body>
+  <div class="instructions"> <h3>Welcome to Sparta Tekkers</h3>
+    <p>Instructions: Your objective is to score. Control the player and try to direct the ball into the goal. <br> Player 1 Controls: Up - "w", left - "a", down - "s", right - "d". <br> Player 2 Controls: Up - "arrow up", left - "arrow left", down - "arrow down", right - "arrow right" <br> First player to reach 10 goals win.</p>
+  </div>
   <div class="btn-container">
     <div class="btn">Start</div>
   </div>
 
+
     <div class="container">
-      <div class="ball">s</div>
-      <div class="goal1">s</div>
-      <div class="goal2">s</div>
-      <div class="player1">s</div>
+      <h2 class="time">Time Left: 120 seconds</h2>
+      <div class="ball"></div>
+      <div class="goal1"></div>
+      <div class="goal2"></div>
+      <div class="player1"></div>
+      <div class="player2"></div>
       <div class="player1Win">
         Player 1 Wins!
+      </div>
+      <div class="player2Win">
+        Player 2 Wins!
+      </div>
+      <div class="playerDraw">
+        It's a Draw!
       </div>
     </div>
 
     <div class="scoreboard">
       <div class="score1">
-          <h1>Player 1</h1>
+          <h3>Player 1</h3>
           <div class="player1Score">
-
+          0
           </div>
       </div>
       <div class="score2">
-          <h1>Player 2</h1>
-          <div class="">
-
+          <h3>Player 2</h3>
+          <div class="player2Score">
+          0
         </div>
       </div>
     </div>

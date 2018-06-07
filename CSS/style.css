@@ -1,13 +1,20 @@
 body {
   font-family: fantasy;
   text-align: center;
-  margin: 100px auto
+  margin: auto;
+}
+.instructions{
+width: 70%;
+height: auto;
+margin: auto;
+padding: auto
+/* padding: 0 30px; */
 }
 
 .container {
-  width: 1200px;
-  height: 650px;
-  margin: 10% auto;
+  width: 1000px;
+  height: 550px;
+  margin: auto;
   background: #385831;
   border-radius: 1em;
   position: relative;
@@ -18,8 +25,9 @@ body {
   position: absolute;
   width: 20px;
   height: 200px;
-  left: -1.7%;
+  left: -2%;
   top: 36%;
+
 }
 .goal2{
   background-color: black;
@@ -31,23 +39,33 @@ body {
 }
 
 .ball {
-  height:30px;
-  width:30px;
+  height:20px;
+  width:20px;
   background: lime;
   border-radius: 50%;
-  position: absolute;
   left: 50%;
   top: 50%;
+  position: absolute;
 }
 
 .player1 {
-  height: 70px;
-  width: 40px;
+  height: 50px;
+  width: 30px;
   background: rgb(55, 42, 42);
   border-radius: 10%;
+  top: 49%;
   position: absolute;
-  top: 325px;
-  left: 30px;
+  left: 0px;
+}
+
+.player2 {
+  height: 50px;
+  width: 30px;
+  background: rgb(130, 27, 27);
+  border-radius: 10%;
+  top: 49%;
+  position: absolute;
+  left: 970px;
 }
 
 .scoreboard{
@@ -55,33 +73,34 @@ body {
   flex-direction: row;
   box-sizing: border-box;
   background-color: rgb(85, 29, 70);
-  width: 650px;
-  height: 300px;
-  margin: -30px auto;
+  width: 500px;
+  height: 180px;
+  margin: auto;
 }
-.score1{
+.score1, .score2{
   width: 50%;
 }
-.score2{
-  width: 50%;
-}
-.player1Score {
-  font-size: 10em;
+
+.player1Score, .player2Score {
+  font-size: 7em;
 }
 
 .btn-container {
   text-align: center;
+  display: inline-flex;
 }
 
 .btn {
   font-size: 1.5em;
-  padding:.5em 1.5em;
+  padding: auto;
   background: none;
   border-radius: 1.5em;
   border: 2px solid #999;
   color:#999;
   transition: .2s;
   outline: none;
+  margin: auto 90px;
+  width:200px;
 }
 .btn:hover {
   background: #999;
@@ -95,6 +114,22 @@ body {
 }
 
 .player1Win{
+  width: 90%;
+  height: 90%;
+  background-color: black;
+  margin: auto;
+  color: white;
+  font-size: 10em;
+}
+.player2Win{
+  width: 90%;
+  height: 90%;
+  background-color: black;
+  margin: auto;
+  color: white;
+  font-size: 10em;
+}
+.playerDraw{
   width: 90%;
   height: 90%;
   background-color: black;

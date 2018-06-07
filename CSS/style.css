@@ -4,8 +4,11 @@ body {
   margin: auto;
 }
 .instructions{
-width: 750px;
-padding: 0 30px;
+width: 70%;
+height: auto;
+margin: auto;
+padding: auto
+/* padding: 0 30px; */
 }
 
 .container {

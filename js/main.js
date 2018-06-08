@@ -175,34 +175,32 @@ $(document).ready(function(){
 
         if(goal2Line === ballRight && ballTop > goalTop && ballBottom < goalBottom) {
 
+          AddScore1();
+          $player1.css({'left': `0px`});
+          $player1.css({'top': `275px`});
+          $player2.css({'left': `970px`});
+          $player2.css({'top': `275px`});
           posX = 620;
           posY = 350;
           posX1 = 0;
           posY1 = 275;
           posX2 = 970;
           posY2 = 275;
-          clearInterval(movePlayer);
-          posX1++;
-          posY1++;
-          posX2--;
-          posY2--;
-          AddScore1();
         }
 
         if(goal1Line === ballLeft && ballTop > goalTop && ballBottom < goalBottom) {
 
+          AddScore2();
+          $player1.css({'left': `0px`});
+          $player1.css({'top': `275px`});
+          $player2.css({'left': `970px`});
+          $player2.css({'top': `275px`});
           posX = 620;
           posY = 350;
           posX1 = 0;
           posY1 = 275;
           posX2 = 970;
           posY2 = 275;
-          clearInterval(movePlayer);
-          posX1++;
-          posY1++;
-          posX2--;
-          posY2--;
-          AddScore2();
         }
 
       },1);
@@ -211,7 +209,7 @@ $(document).ready(function(){
   });
 
 
-  setInterval(movePlayer, 200);
+  setInterval(movePlayer, 100);
   var keys = {}
 
   $(document).keydown(function(e) {
@@ -344,7 +342,7 @@ $(document).ready(function(){
     timerRunning = !timerRunning;
   }
 
-  var time = 120, elapsed;
+  var time = 90, elapsed;
 
   function timer(){
     var x = window.setInterval(function()

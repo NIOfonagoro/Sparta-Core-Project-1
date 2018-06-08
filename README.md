@@ -3,7 +3,7 @@
 
 This project is a simple 1 vs 1 football game built in a web browser.
 
-![Image](/Users/tech-a25/Desktop/Sparta/Engineering-11/Core/Sparta-Tekkers/Images/Pitch-Screenshot.png "Sparta Tekkers")
+![Image](Images/PitchScreenshot.png)
 
 ## Objectives
 
@@ -37,7 +37,7 @@ The method (a function that is attached to an object, in the case `window.setInt
 
 The second challenge was making the character movement quite smooth. My first idea was, using the setInterval, to constantly check if the correct key was being pressed, and then react to it by targetting the css attribute to move it pixel by pixel. But this led to quite unstable movements and glitches.  
 The better technique was to look for a 'keyDown' press and assign it to an array. Then as long as the code is in the array then the movement continues. Then one the 'keyUp' is registered, that key is then removed from the array and the movement is stopped.
-    
+
 ```javascript
   $(document).keydown(function(e) {
     event.preventDefault();
@@ -46,7 +46,7 @@ The better technique was to look for a 'keyDown' press and assign it to an array
 
   $(document).keyup(function(e) {
     delete keys[e.keyCode];
-``` 
+```
 This lead to much smoother movements and in turn a much more visually appealing game.
 
 ## Usage
@@ -60,7 +60,7 @@ https://github.com/NIOfonagoro/Sparta-Core-Project-1
 ```
 
 
-2. Clone this repo from the "dev" branch. 
+2. Clone this repo from the "dev" branch.
 
 ```
 git clone git@github.com:NIOfonagoro/Sparta-Core-Project-1.git

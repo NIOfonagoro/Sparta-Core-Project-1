@@ -17,8 +17,8 @@ $(document).ready(function(){
   var $player2Win = $('.player2Win');
   $player2Win.hide();
 
-  let posX = 490;
-  let posY = 275;
+  let posX = 620;
+  let posY = 350;
   let posX1 = 0;
   let posY1 = 275;
   let posX2 = 970;
@@ -34,10 +34,6 @@ $(document).ready(function(){
   var player2Object = {};
 
 
-  // $(document).keydown(function(e) {
-  //   console.log(e.keyCode);
-  // });
-
   // Check container position
   var containerLeft = $container.offset().left;
   var containerTop = $container.offset().top;
@@ -48,8 +44,6 @@ $(document).ready(function(){
   var goal1Line = containerLeft;
   var goalTop = $goal2.offset().top;
   var goalBottom = goalTop + $goal2.height();
-
-  // var goal1Line = $goal1.offset().left + $goal.width();
 
 
   $('.btn').click(function(){
@@ -99,31 +93,30 @@ $(document).ready(function(){
         ballObject.bottom = Math.ceil(ballBottom);
         ballObject.right = Math.ceil(ballRight);
 
-        // console.log(ballObject);
 
         // Move ball along X-Axis
         if (directionX === '+') {
           $ball.css({
-            'left': `${posX}px`
+            'left': `${posX*0.8}px`
           });
           posX++;
         }
         if (directionX === '-') {
           $ball.css({
-            'left': `${posX}px`
+            'left': `${posX*0.8}px`
           });
           posX--;
         }
         // Move ball along Y-Axis
         if (directionY === '+') {
           $ball.css({
-            'top': `${posY}px`
+            'top': `${posY*0.8}px`
           });
           posY++;
         }
         if (directionY === '-') {
           $ball.css({
-            'top': `${posY}px`
+            'top': `${posY*0.8}px`
           });
           posY--;
         }
@@ -181,36 +174,33 @@ $(document).ready(function(){
         // goals
 
         if(goal2Line === ballRight && ballTop > goalTop && ballBottom < goalBottom) {
-          console.log("issa goal");
 
-          posX = 490;
-          posY = 275;
+          AddScore1();
+          $player1.css({'left': `0px`});
+          $player1.css({'top': `275px`});
+          $player2.css({'left': `970px`});
+          $player2.css({'top': `275px`});
+          posX = 620;
+          posY = 350;
           posX1 = 0;
           posY1 = 275;
           posX2 = 970;
           posY2 = 275;
-          clearInterval(movePlayer);
-          posX1++;
-          posY1++;
-          posX2--;
-          posY2--;
-          AddScore1();
         }
 
         if(goal1Line === ballLeft && ballTop > goalTop && ballBottom < goalBottom) {
-          console.log("issa goal");
-          posX = 490;
-          posY = 275;
+
+          AddScore2();
+          $player1.css({'left': `0px`});
+          $player1.css({'top': `275px`});
+          $player2.css({'left': `970px`});
+          $player2.css({'top': `275px`});
+          posX = 620;
+          posY = 350;
           posX1 = 0;
           posY1 = 275;
           posX2 = 970;
           posY2 = 275;
-          clearInterval(movePlayer);
-          posX1++;
-          posY1++;
-          posX2--;
-          posY2--;
-          AddScore2();
         }
 
       },1);
@@ -218,10 +208,8 @@ $(document).ready(function(){
     }
   });
 
-  // If p1.top < pitch.top && p1.right < pitch.right && p1.left > pitch.left && p1.bottom > pitch.bottom
-  // set interval movePlayer
 
-  setInterval(movePlayer, 200);
+  setInterval(movePlayer, 100);
   var keys = {}
 
   $(document).keydown(function(e) {
@@ -260,56 +248,56 @@ $(document).ready(function(){
     for (var direction in keys) {
       switch (true) {
         case !keys.hasOwnProperty(direction):
-        break;
+          break;
         case direction == 65:
-        if (player1Object.left > containerLeft) {
-          $player1.css('left', `${posX1}px`); //arrow left
-          posX1--;
-        }
-        break;
+          if (player1Object.left > containerLeft) {
+            $player1.css('left', `${posX1}px`); //"a"
+            posX1--;
+          }
+          break;
         case direction == 87:
-        if (player1Object.top > containerTop) {
-          $player1.css('top', `${posY1}px`); //arrow up
-          posY1--;
-        }
-        break;
+          if (player1Object.top > containerTop) {
+            $player1.css('top', `${posY1}px`); //"w"
+            posY1--;
+          }
+          break;
         case direction == 68:
-        if (player1Object.right < containerRight) {
-          $player1.css('left', `${posX1}px`); //arrow right
-          posX1++;
-        }
-        break;
+          if (player1Object.right < containerRight) {
+            $player1.css('left', `${posX1}px`); //"d"
+            posX1++;
+          }
+          break;
         case direction == 83:
-        if (player1Object.bottom < containerBottom) {
-          $player1.css('top',`${posY1}px`); //arrow down
-          posY1++;
-        }
-        break;
+          if (player1Object.bottom < containerBottom) {
+            $player1.css('top',`${posY1}px`); //"s"
+            posY1++;
+          }
+          break;
 
         case direction == 37:
-        if (player2Object.left > containerLeft) {
-          $player2.css('left', `${posX2}px`); //arrow left
-          posX2--;
-        }
-        break;
+          if (player2Object.left > containerLeft) {
+            $player2.css('left', `${posX2}px`); //arrow left
+            posX2--;
+          }
+          break;
         case direction == 38:
-        if (player2Object.top > containerTop) {
-          $player2.css('top', `${posY2}px`); //arrow up
-          posY2--;
-        }
-        break;
+          if (player2Object.top > containerTop) {
+            $player2.css('top', `${posY2}px`); //arrow up
+            posY2--;
+          }
+          break;
         case direction == 39:
-        if (player2Object.right < containerRight) {
-          $player2.css('left', `${posX2}px`); //arrow right
-          posX2++;
-        }
-        break;
+          if (player2Object.right < containerRight) {
+            $player2.css('left', `${posX2}px`); //arrow right
+            posX2++;
+          }
+          break;
         case direction == 40:
-        if (player2Object.bottom < containerBottom) {
-          $player2.css('top',`${posY2}px`); //arrow down
-          posY2++;
-        }
-        break;
+          if (player2Object.bottom < containerBottom) {
+            $player2.css('top',`${posY2}px`); //arrow down
+            posY2++;
+          }
+          break;
         default:
       }
     }
@@ -354,7 +342,7 @@ $(document).ready(function(){
     timerRunning = !timerRunning;
   }
 
-  var time = 10, elapsed;
+  var time = 90, elapsed;
 
   function timer(){
     var x = window.setInterval(function()
